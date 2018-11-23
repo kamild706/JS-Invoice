@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Zadanie 5</title>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>PARAGON 30-03-15/004</h1>
+        </header>
+        <main>
+            <table>
+                <thead ondragover="view.allowDrop(event)" ondrop="view.onDrop(event)">
+                    <tr>
+                        <th>LP</th>
+                        <th>NAZWA</th>
+                        <th>ILOŚĆ</th>
+                        <th>CENA</th>
+                        <th>SUMA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th>RAZEM</th>
+                    <td id="total-charge"></td>
+                </tr>
+                </tfoot>
+            </table>
+            <form id="new-item-form" action="#">
+                <div>
+                    <div>
+                        <input type="text" placeholder="Nazwa" id="name">
+                        <span class="name-error error" hidden>Nazwa musi zaczynać się wielką literą</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Liczba sztuk" id="count">
+                        <span class="count-error error" hidden>Liczba musi być dodatnia</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Cena jednostkowa" id="price">
+                        <span class="price-error error" hidden>Cena musi być dodatnia</span>
+                    </div>
+                    <input type="submit" value="Dodaj" name="">
+                </div>
+            </form>
+            <form id="edit-item-form" action="#">
+                <div>
+                    <div>
+                        <input type="text" placeholder="Nazwa" id="name">
+                        <span class="name-error error" hidden>Nazwa musi zaczynać się wielką literą</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Liczba sztuk" id="count">
+                        <span class="count-error error" hidden>Liczba musi być dodatnia</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Cena jednostkowa" id="price">
+                        <span class="price-error error" hidden>Cena musi być dodatnia</span>
+                    </div>
+                    <input type="submit" value="Zapisz" class="edit-buttons" name="">
+                    <input type="button" value="Odrzuć" class="edit-buttons" name="">
+                </div>
+            </form>
+        </main>
+        <table id="template-container">
+            <tbody>
+                <tr id="table-row-template" draggable="true" ondragstart="view.dragStart(event)" ondragover="view.allowDrop(event)" ondrop="view.onDrop(event)">
+                    <td>
+                        <span class="icon-box">
+                            <img src="icons/edit-icon.png">
+                            <img src="icons/delete-icon.png">
+                        </span>
+                        <span></span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- <script src="main.js"></script> -->
+        <script src="Formatter.js"></script>
+        <script src="Event.js"></script>
+        <script src="FormValidator.js"></script>
+        <script src="InvoiceItem.js"></script>
+        <script src="Model.js"></script>
+        <script src="View.js"></script>
+        <script src="Controller.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>

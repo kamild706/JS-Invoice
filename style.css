@@ -1,0 +1,122 @@
+@font-face {
+    font-family: ProximaNova;
+    src: url("https://p32.pl/fonts/ProximaNova-Regular.otf") format("opentype");
+}
+
+* {
+  font-family: ProximaNova, sans-serif;
+}
+
+body {
+  max-width: 900px;
+  width: 80%;
+  margin: 60px auto;
+}
+
+header h1 {
+  text-align: center;
+}
+
+table {
+  border-spacing: 0px;
+  width: 100%;
+}
+
+thead {
+  background-color: #ccc;
+}
+
+tbody {
+  border: 10px solid grey;
+}
+
+tbody td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+table tr {
+  height: 40px;
+}
+
+table tr > *:first-child {
+  width: 10%;
+}
+
+table tr > *:nth-child(2) {
+  width: 50%;
+}
+
+table tr > *:nth-child(3) {
+  width: 10%;
+}
+
+tbody td:nth-child(1),
+tbody td:nth-child(2) ~ td,
+tfoot td:nth-child(2) ~ * {
+  text-align:right;
+}
+
+tfoot th, tfoot td {
+  padding: 10px;
+}
+
+tbody tr:last-child > * {
+  border-bottom: 1px solid grey;
+}
+
+tfoot td:last-child {
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+  background-color: #bbb;
+}
+
+form input {
+  border: none;
+  margin-bottom: 5px;
+  border-radius: 2px;
+  height: 40px;
+  box-sizing: border-box;
+  /*display: block;*/
+  padding: 5px;
+  width: 250px;
+}
+
+form input:last-child {
+  background-color: #eee;
+}
+
+form > div {
+  padding: 10px 20px;
+  margin: 0 auto;
+}
+
+#template-container {
+  display: none;
+}
+
+.icon-box img {
+  width: 16px;
+  float: left;
+}
+
+.icon-box img:nth-child(2) {
+  padding-left: 5px;
+  width: 17px;
+}
+
+span.error {
+  color: #222;
+  font-weight: bold;
+}
+
+.edit-buttons {
+  background-color: #eee;
+  width: 123px;
+}
