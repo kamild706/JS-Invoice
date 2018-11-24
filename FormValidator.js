@@ -1,6 +1,6 @@
 class FormValidator {
 	static isNameValid(name) {
-		return name[0] === name[0].toUpperCase();
+		return name && name[0] === name[0].toUpperCase();
 	}
 
 	static isCountValid(count) {

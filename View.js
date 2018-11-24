@@ -5,8 +5,28 @@ class View {
 		this.rowTemplate = document.getElementById("table-row-template");
 		this.charge = document.getElementById("total-charge");
 		this.newItemForm = document.getElementById("new-item-form");
+		this.editItemForm = document.getElementById("edit-item-form");
 
 		this.newItemSubmitted = new Event(this);
+		this.itemEdited = new Event(this);
+	}
+
+	setupEditItemFormListener() {
+		this.editItemForm.addEventListener("submit", e => {
+			e.preventDefault();
+			for (let elem of document.getElementsByClassName("error"))
+				elem.setAttribute("hidden", true);
+
+			this.itemEdited.notify(e.target);
+		}, false);
+
+		document.getElementById("edit-cancel").addEventListener("click", e => {
+			this.model.editedItem = null;
+			this.editItemForm.reset();
+
+			this.newItemForm.removeAttribute("hidden");
+			this.editItemForm.setAttribute("hidden", true);
+		});
 	}
 
 	setupNewItemFormListener() {
@@ -28,6 +48,10 @@ class View {
 			this.table.appendChild(row);
 		}
 		this.updateTotalCharge();
+		this.editItemForm.reset();
+
+		this.newItemForm.removeAttribute("hidden");
+		this.editItemForm.setAttribute("hidden", true);
 	}
 
 	showNewItem() {
@@ -61,8 +85,20 @@ class View {
 	}
 
 	onEditItem(event) {
-		let id = Number(event.target.parentElement.parentElement.parentElement.dataset.id);
+		this.newItemForm.setAttribute("hidden", true);
+		this.editItemForm.removeAttribute("hidden");
 		
+		let id = Number(event.target.parentElement.parentElement.parentElement.dataset.id);
+		console.log(id);
+		let item = this.model.items[id];
+		let nameInput = document.getElementById("ename");
+		let countInput = document.getElementById("ecount");
+		let priceInput = document.getElementById("eprice");
+
+		this.model.editedItem = id;
+		nameInput.value = item.name;
+		countInput.value = item.count;
+		priceInput.value = item.price;
 	}
 
 	onDeleteItem(event) {
@@ -83,7 +119,7 @@ class View {
 
 		row.dataset.id = num;
 
-		row.children[0].children[0].children[0].addEventListener("click", this.onEditItem);
+		row.children[0].children[0].children[0].addEventListener("click", this.onEditItem.bind(this));
 		row.children[0].children[0].children[1].addEventListener("click", this.onDeleteItem.bind(this));
 
 		row.children[0].children[1].textContent = num + 1;

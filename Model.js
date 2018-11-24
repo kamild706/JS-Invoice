@@ -1,6 +1,7 @@
 class Model {
 	constructor() {
 		this.items = [];
+		this.editedItem = null;
 
 		this.itemsNeedReloading = new Event(this);
 		this.newItemAdded = new Event(this);
@@ -22,6 +23,18 @@ class Model {
 		}
 
 		this.itemsNeedReloading.notify();
+	}
+
+	editItem(item) {
+		if (this.editedItem) {
+			this.items.splice(this.editedItem, 1, item);
+			this.editedItem = null;
+
+			localStorage.setItem("items", JSON.stringify(this.items));
+			this.itemsNeedReloading.notify();
+		} else {
+			console.warn("No item is being edited");
+		}
 	}
 
 	addItem(item) {

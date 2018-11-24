@@ -5,6 +5,7 @@ class Controller {
 
 		view.model = model;
 		view.setupNewItemFormListener();
+		view.setupEditItemFormListener();
 
 		this.nameIsInvalid = new Event(this);
 		this.countIsInvalid = new Event(this);
@@ -18,10 +19,26 @@ class Controller {
 		this.model.newItemAdded.attach(this.view.showNewItem.bind(this.view));
 
 		this.view.newItemSubmitted.attach(this.onNewItemSubmitted.bind(this));
+		this.view.itemEdited.attach(this.onItemEdited.bind(this));
 
 		this.nameIsInvalid.attach(this.view.onNameInvalid.bind(this.view));
 		this.countIsInvalid.attach(this.view.onCountInvalid.bind(this.view));
 		this.priceIsInvalid.attach(this.view.onPriceInvalid.bind(this.view));
+	}
+
+	onItemEdited(sender, itemData) {
+		if (!FormValidator.isNameValid(itemData[0].value)) {
+			return this.nameIsInvalid.notify();
+		}
+		if (!FormValidator.isCountValid(itemData[1].value)) {
+			return this.countIsInvalid.notify();
+		}
+		if (!FormValidator.isPriceValid(itemData[2].value)) {
+			return this.priceIsInvalid.notify();
+		}
+
+		const item = new InvoiceItem(itemData[0].value, Number(itemData[1].value), Number(itemData[2].value));
+		this.model.editItem(item);
 	}
 
 	onNewItemSubmitted(sender, itemData) {

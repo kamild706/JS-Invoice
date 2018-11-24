@@ -53,19 +53,20 @@
             <form id="edit-item-form" action="#">
                 <div>
                     <div>
-                        <input type="text" placeholder="Nazwa" id="name">
+                        <input type="text" placeholder="Nazwa" id="ename">
                         <span class="name-error error" hidden>Nazwa musi zaczynać się wielką literą</span>
                     </div>
                     <div>
-                        <input type="text" placeholder="Liczba sztuk" id="count">
+                        <input type="text" placeholder="Liczba sztuk" id="ecount">
                         <span class="count-error error" hidden>Liczba musi być dodatnia</span>
                     </div>
                     <div>
-                        <input type="text" placeholder="Cena jednostkowa" id="price">
+                        <input type="text" placeholder="Cena jednostkowa" id="eprice">
                         <span class="price-error error" hidden>Cena musi być dodatnia</span>
                     </div>
                     <input type="submit" value="Zapisz" class="edit-buttons" name="">
-                    <input type="button" value="Odrzuć" class="edit-buttons" name="">
+                    <input type="button" value="Odrzuć" id="edit-cancel" class="edit-buttons" name="">
+                    <input type="hidden" id="eid">
                 </div>
             </form>
         </main>
